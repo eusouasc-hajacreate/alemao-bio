@@ -1,0 +1,325 @@
+/* ============================================================
+   ALEMÃO DIESEL — Link na Bio
+   Token system
+   Color:  ink #0a0a0a · panel #151515 · gold #fcd414
+           bronze #71440c · tan #b38c67 · beige #c3b2a6 · white #fff
+   Type:   Archivo Black (display / eyebrow) + Inter (body)
+   Layout: single-column "instrument plate" cards, riveted corners
+
+   MOBILE-FIRST: every rule below is written for a small phone
+   viewport (~360px) first. Enhancements for larger screens live
+   only inside the min-width media query at the bottom — nothing
+   here is written for desktop and then shrunk down.
+   ============================================================ */
+
+:root {
+  --ink: #0a0a0a;
+  --panel: #151515;
+  --panel-2: #1c1c1c;
+  --gold: #fcd414;
+  --bronze: #71440c;
+  --tan: #b38c67;
+  --beige: #c3b2a6;
+  --white: #ffffff;
+  --line: rgba(252, 212, 20, 0.16);
+  --page-max: 460px;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--white);
+  font-family: 'Inter', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background:
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(252, 212, 20, 0.10), transparent 60%),
+    repeating-linear-gradient(155deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 7px),
+    linear-gradient(180deg, #0c0c0c 0%, #0a0a0a 40%, #060606 100%);
+  display: flex;
+  justify-content: center;
+}
+
+.page {
+  width: 100%;
+  max-width: var(--page-max);
+  padding: 32px 16px 28px;
+  padding-top: max(32px, env(safe-area-inset-top));
+  padding-bottom: max(28px, env(safe-area-inset-bottom));
+  position: relative;
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.hero__logo {
+  width: 124px;
+  height: auto;
+  filter: drop-shadow(0 6px 18px rgba(255, 255, 255, 0.12));
+  margin-bottom: 6px;
+}
+
+.hero__name {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 22px;
+  letter-spacing: 0.4px;
+  margin: 4px 0 2px;
+  color: var(--white);
+}
+
+.hero__tagline {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--beige);
+  margin: 0 0 14px;
+}
+
+/* redline hairline — signature divider, like a tachometer redline */
+.redline {
+  width: 100%;
+  max-width: 220px;
+  height: 3px;
+  border-radius: 3px;
+  margin: 0 auto 4px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--bronze) 8%,
+    var(--gold) 46%,
+    var(--gold) 54%,
+    var(--bronze) 92%,
+    transparent 100%
+  );
+  position: relative;
+}
+.redline::before,
+.redline::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: translateY(-50%);
+}
+.redline::before { left: -2px; }
+.redline::after { right: -2px; }
+
+.hero__sub {
+  font-size: 11.5px;
+  color: rgba(195, 178, 166, 0.75);
+  letter-spacing: 0.2px;
+  margin-top: 8px;
+}
+
+/* ---------- Link cards ---------- */
+
+.links {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  border-radius: 14px;
+  overflow: hidden;
+  border: 1px solid rgba(252, 212, 20, 0.22);
+  background: var(--panel);
+  box-shadow:
+    0 10px 24px rgba(0, 0, 0, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.02);
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+
+.card:active { transform: scale(0.98); }
+
+.card:hover {
+  border-color: var(--gold);
+  box-shadow:
+    0 12px 28px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(252, 212, 20, 0.35);
+}
+
+/* riveted corners — small bolt marks, workshop-plate motif */
+.card::before,
+.card::after {
+  content: '';
+  position: absolute;
+  top: 9px;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #ffe98a, var(--bronze) 75%);
+  z-index: 3;
+  box-shadow: 0 1px 1px rgba(0,0,0,0.6);
+}
+.card::before { left: 9px; }
+.card::after { right: 9px; }
+
+.card__media {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background-size: cover;
+  background-position: center;
+}
+
+.card__media::after {
+  content: '';
+  position: absolute;
+  inset: auto 0 0 0;
+  height: 46%;
+  background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.5) 100%);
+  pointer-events: none;
+}
+
+/* text is baked into the artwork itself — keep a label for
+   screen readers / SEO without duplicating it visually */
+.card__text {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+/* CTA badge doubles as the tap target hint; the whole .card is
+   clickable so the visible circle can stay compact, but we still
+   keep it comfortably inside common thumb-reach sizing. */
+.card__cta {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--gold);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 10px rgba(252, 212, 20, 0.35);
+}
+
+.card__cta svg {
+  width: 15px;
+  height: 15px;
+}
+
+/* Solid (non-image) card variant — for WhatsApp / support style */
+.card--solid .card__media::after { display: none; }
+
+/* ---------- Social row ---------- */
+
+.social {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 26px;
+}
+
+.social__btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid rgba(252, 212, 20, 0.3);
+  background: var(--panel-2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  transition: border-color 0.18s ease, background 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+}
+.social__btn:hover {
+  border-color: var(--gold);
+  background: rgba(252, 212, 20, 0.08);
+}
+.social__btn svg {
+  width: 18px;
+  height: 18px;
+  fill: var(--gold);
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  text-align: center;
+  margin-top: 24px;
+}
+
+.footer__brand {
+  font-size: 10.5px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--tan);
+}
+
+.footer__copy {
+  font-size: 10px;
+  color: rgba(195, 178, 166, 0.5);
+  margin-top: 4px;
+}
+
+/* ---------- Enhancements for wider viewports ----------
+   Base rules above already work down to ~320px. Everything
+   below only ADDS breathing room / scale for tablet+ screens;
+   nothing here is required for the page to function. */
+
+@media (min-width: 480px) {
+  .page { padding-top: 44px; padding-bottom: 36px; }
+  .hero { margin-bottom: 30px; }
+  .hero__logo { width: 148px; }
+  .hero__name { font-size: 27px; letter-spacing: 0.5px; }
+  .hero__tagline { font-size: 11.5px; letter-spacing: 3px; margin-bottom: 16px; }
+  .redline { max-width: 260px; }
+  .hero__sub { font-size: 12px; margin-top: 10px; }
+  .links { gap: 16px; }
+  .card__cta { width: 36px; height: 36px; right: 14px; bottom: 14px; }
+  .social { margin-top: 30px; }
+  .footer { margin-top: 26px; }
+}
+
+@media (min-width: 640px) {
+  body {
+    background:
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(252, 212, 20, 0.10), transparent 60%),
+      repeating-linear-gradient(155deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 7px),
+      linear-gradient(180deg, #0c0c0c 0%, #0a0a0a 40%, #060606 100%);
+    padding: 40px 0;
+  }
+  .page {
+    border: 1px solid rgba(252, 212, 20, 0.12);
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.012);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card, .social__btn { transition: none; }
+}
