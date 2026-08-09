@@ -163,6 +163,11 @@ body {
     0 0 0 1px rgba(252, 212, 20, 0.35);
 }
 
+.card:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
 /* riveted corners — small bolt marks, workshop-plate motif */
 .card::before,
 .card::after {
@@ -259,6 +264,10 @@ body {
   border-color: var(--gold);
   background: rgba(252, 212, 20, 0.08);
 }
+.social__btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
 .social__btn svg {
   width: 18px;
   height: 18px;
@@ -281,7 +290,7 @@ body {
 
 .footer__copy {
   font-size: 10px;
-  color: rgba(195, 178, 166, 0.5);
+  color: rgba(195, 178, 166, 0.7);
   margin-top: 4px;
 }
 
