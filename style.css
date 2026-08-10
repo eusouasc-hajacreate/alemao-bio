@@ -1,10 +1,11 @@
 /* ============================================================
    ALEMÃO DIESEL — Link na Bio
-   Token system
-   Color:  ink #0a0a0a · panel #151515 · gold #fcd414
-           bronze #71440c · tan #b38c67 · beige #c3b2a6 · white #fff
-   Type:   Archivo Black (display / eyebrow) + Inter (body)
-   Layout: single-column "instrument plate" cards, riveted corners
+   Token system (Manual da Marca v2.0 — Agosto 2026)
+   Color:  ink #0b0c0e · panel #121417 · border #24262a
+           silver #a8bac2 · steel #5a6167 · white-cta #e2e6e8
+   Type:   Anton (display / eyebrow) + Inter (body)
+   Layout: single-column cards, thin near-invisible borders,
+           near-white circular CTAs — no gold, no rivets.
 
    MOBILE-FIRST: every rule below is written for a small phone
    viewport (~360px) first. Enhancements for larger screens live
@@ -13,15 +14,16 @@
    ============================================================ */
 
 :root {
-  --ink: #0a0a0a;
-  --panel: #151515;
-  --panel-2: #1c1c1c;
-  --gold: #fcd414;
-  --bronze: #71440c;
-  --tan: #b38c67;
-  --beige: #c3b2a6;
-  --white: #ffffff;
-  --line: rgba(252, 212, 20, 0.16);
+  --ink: #0b0c0e;
+  --panel: #121417;
+  --panel-2: #1a1d21;
+  --border-subtle: #24262a;
+  --silver: #a8bac2;
+  --steel: #5a6167;
+  --cta: #e2e6e8;
+  --white: #f2f3f4;
+  --gray-mid: #7a8287;
+  --gray-caption: #707576;
   --page-max: 460px;
 }
 
@@ -41,9 +43,9 @@ body {
   min-height: 100vh;
   min-height: 100dvh;
   background:
-    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(252, 212, 20, 0.10), transparent 60%),
+    radial-gradient(ellipse 900px 500px at 50% -10%, rgba(168, 186, 194, 0.09), transparent 60%),
     repeating-linear-gradient(155deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 7px),
-    linear-gradient(180deg, #0c0c0c 0%, #0a0a0a 40%, #060606 100%);
+    linear-gradient(180deg, #0d0e10 0%, #0b0c0e 40%, #060708 100%);
   display: flex;
   justify-content: center;
 }
@@ -75,9 +77,10 @@ body {
 }
 
 .hero__name {
-  font-family: 'Archivo Black', sans-serif;
-  font-size: 22px;
-  letter-spacing: 0.4px;
+  font-family: 'Anton', sans-serif;
+  font-weight: 400;
+  font-size: 26px;
+  letter-spacing: 0.2px;
   margin: 4px 0 2px;
   color: var(--white);
 }
@@ -87,11 +90,11 @@ body {
   font-weight: 600;
   letter-spacing: 2.5px;
   text-transform: uppercase;
-  color: var(--beige);
+  color: var(--gray-mid);
   margin: 0 0 14px;
 }
 
-/* redline hairline — signature divider, like a tachometer redline */
+/* signature hairline — recolored to the metallic system, no gold */
 .redline {
   width: 100%;
   max-width: 220px;
@@ -101,10 +104,10 @@ body {
   background: linear-gradient(
     90deg,
     transparent 0%,
-    var(--bronze) 8%,
-    var(--gold) 46%,
-    var(--gold) 54%,
-    var(--bronze) 92%,
+    var(--steel) 8%,
+    var(--silver) 46%,
+    var(--silver) 54%,
+    var(--steel) 92%,
     transparent 100%
   );
   position: relative;
@@ -117,7 +120,7 @@ body {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--silver);
   transform: translateY(-50%);
 }
 .redline::before { left: -2px; }
@@ -125,7 +128,7 @@ body {
 
 .hero__sub {
   font-size: 11.5px;
-  color: rgba(195, 178, 166, 0.75);
+  color: var(--gray-caption);
   letter-spacing: 0.2px;
   margin-top: 8px;
 }
@@ -144,7 +147,7 @@ body {
   position: relative;
   border-radius: 14px;
   overflow: hidden;
-  border: 1px solid rgba(252, 212, 20, 0.22);
+  border: 1px solid var(--border-subtle);
   background: var(--panel);
   box-shadow:
     0 10px 24px rgba(0, 0, 0, 0.45),
@@ -157,32 +160,16 @@ body {
 .card:active { transform: scale(0.98); }
 
 .card:hover {
-  border-color: var(--gold);
+  border-color: var(--silver);
   box-shadow:
     0 12px 28px rgba(0, 0, 0, 0.5),
-    0 0 0 1px rgba(252, 212, 20, 0.35);
+    0 0 0 1px rgba(168, 186, 194, 0.3);
 }
 
 .card:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: 3px;
 }
-
-/* riveted corners — small bolt marks, workshop-plate motif */
-.card::before,
-.card::after {
-  content: '';
-  position: absolute;
-  top: 9px;
-  width: 5px;
-  height: 5px;
-  border-radius: 50%;
-  background: radial-gradient(circle at 35% 30%, #ffe98a, var(--bronze) 75%);
-  z-index: 3;
-  box-shadow: 0 1px 1px rgba(0,0,0,0.6);
-}
-.card::before { left: 9px; }
-.card::after { right: 9px; }
 
 .card__media {
   position: relative;
@@ -197,7 +184,7 @@ body {
   position: absolute;
   inset: auto 0 0 0;
   height: 46%;
-  background: linear-gradient(180deg, rgba(10,10,10,0) 0%, rgba(10,10,10,0.5) 100%);
+  background: linear-gradient(180deg, rgba(11,12,14,0) 0%, rgba(11,12,14,0.5) 100%);
   pointer-events: none;
 }
 
@@ -222,11 +209,11 @@ body {
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: var(--gold);
+  background: var(--cta);
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 4px 10px rgba(252, 212, 20, 0.35);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
 .card__cta svg {
@@ -250,7 +237,7 @@ body {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid rgba(252, 212, 20, 0.3);
+  border: 1px solid var(--border-subtle);
   background: var(--panel-2);
   display: flex;
   align-items: center;
@@ -261,17 +248,17 @@ body {
   touch-action: manipulation;
 }
 .social__btn:hover {
-  border-color: var(--gold);
-  background: rgba(252, 212, 20, 0.08);
+  border-color: var(--silver);
+  background: rgba(168, 186, 194, 0.08);
 }
 .social__btn:focus-visible {
-  outline: 2px solid var(--gold);
+  outline: 2px solid var(--silver);
   outline-offset: 3px;
 }
 .social__btn svg {
   width: 18px;
   height: 18px;
-  fill: var(--gold);
+  fill: var(--silver);
 }
 
 /* ---------- Footer ---------- */
@@ -285,12 +272,13 @@ body {
   font-size: 10.5px;
   letter-spacing: 1.5px;
   text-transform: uppercase;
-  color: var(--tan);
+  color: var(--gray-caption);
 }
 
 .footer__copy {
   font-size: 10px;
-  color: rgba(195, 178, 166, 0.7);
+  color: var(--gray-caption);
+  opacity: 0.85;
   margin-top: 4px;
 }
 
@@ -303,7 +291,7 @@ body {
   .page { padding-top: 44px; padding-bottom: 36px; }
   .hero { margin-bottom: 30px; }
   .hero__logo { width: 148px; }
-  .hero__name { font-size: 27px; letter-spacing: 0.5px; }
+  .hero__name { font-size: 31px; letter-spacing: 0.3px; }
   .hero__tagline { font-size: 11.5px; letter-spacing: 3px; margin-bottom: 16px; }
   .redline { max-width: 260px; }
   .hero__sub { font-size: 12px; margin-top: 10px; }
@@ -316,13 +304,13 @@ body {
 @media (min-width: 640px) {
   body {
     background:
-      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(252, 212, 20, 0.10), transparent 60%),
+      radial-gradient(ellipse 900px 500px at 50% -10%, rgba(168, 186, 194, 0.09), transparent 60%),
       repeating-linear-gradient(155deg, rgba(255,255,255,0.018) 0px, rgba(255,255,255,0.018) 1px, transparent 1px, transparent 7px),
-      linear-gradient(180deg, #0c0c0c 0%, #0a0a0a 40%, #060606 100%);
+      linear-gradient(180deg, #0d0e10 0%, #0b0c0e 40%, #060708 100%);
     padding: 40px 0;
   }
   .page {
-    border: 1px solid rgba(252, 212, 20, 0.12);
+    border: 1px solid var(--border-subtle);
     border-radius: 22px;
     background: rgba(255, 255, 255, 0.012);
     box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55);
